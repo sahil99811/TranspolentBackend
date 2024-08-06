@@ -79,7 +79,7 @@ async function getXml(domain) {
         const mainSitemapResult = await parseXml(mainSitemapXml);
 
         // Extract and process products
-        const products = mainSitemapResult.urlset.url.slice(0, 3).map(url => ({
+        const products = mainSitemapResult.urlset.url.slice(0, 5).map(url => ({
             loc: url.loc[0],
             image: url.image ? url.image[0].image[0] : null,
             imageTitle: url.image ? url.image[0].title[0] : null
@@ -112,7 +112,7 @@ exports.getXml = async (req, res) => {
         if (!id) {
             return res.status(400).json({ message: 'Domain name is required' });
         }
-
+        console.log(id);
         // Ensure the domain is properly formatted
         const formattedDomain = new URL(id).origin;
 
